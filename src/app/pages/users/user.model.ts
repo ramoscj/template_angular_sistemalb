@@ -1,20 +1,20 @@
-export class User {
+export class Estudiante {
   id: number;
   username: string;
-  password: string;  
-  profile: UserProfile;
+  password: string;
+  profile: PerfilEstidante;
   work: UserWork;
   contacts: UserContacts;
   social: UserSocial;
   settings: UserSettings;
 }
 
-export class UserProfile {  
-  name: string;
-  surname: string;  
-  birthday: Object;
-  gender: string;
-  image: string;
+export class PerfilEstidante {
+  nombres: string;
+  apellidos: string;
+  fecha_nac: Object;
+  genero: string;
+  avatar: string;
 }
 
 export class UserWork {
@@ -26,7 +26,7 @@ export class UserWork {
 export class UserContacts{
   email: string;
   phone: string;
-  address: string;  
+  address: string;
 }
 
 export class UserSocial {

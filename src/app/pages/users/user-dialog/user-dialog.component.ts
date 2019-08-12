@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { User, UserProfile, UserWork, UserContacts, UserSocial, UserSettings } from '../user.model';
+import { Estudiante, PerfilEstidante, UserWork, UserContacts, UserSocial, UserSettings } from '../user.model';
 
 @Component({
   selector: 'app-user-dialog',
@@ -9,7 +9,7 @@ import { User, UserProfile, UserWork, UserContacts, UserSocial, UserSettings } f
   styleUrls: ['./user-dialog.component.scss']
 })
 export class UserDialogComponent implements OnInit {
-  public form:FormGroup;
+  public form: FormGroup;
   public passwordHide:boolean = true;
   public colors = [
     {value: 'gradient-purple', viewValue: 'Purple'},
@@ -26,15 +26,15 @@ export class UserDialogComponent implements OnInit {
     {value: 'gradient-lime', viewValue: 'Lime'}
   ];
   constructor(public dialogRef: MatDialogRef<UserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public user: User,
+              @Inject(MAT_DIALOG_DATA) public estudiante: Estudiante,
               public fb: FormBuilder) {
     this.form = this.fb.group({
       id: null,
       username: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(6)])],       
+      password: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
       profile: this.fb.group({
         name: null,
-        surname: null,  
+        surname: null,
         birthday: null,
         gender: null,
         image: null
@@ -47,7 +47,7 @@ export class UserDialogComponent implements OnInit {
       contacts: this.fb.group({
         email: null,
         phone: null,
-        address: null          
+        address: null
       }),
       social: this.fb.group({
         facebook: null,
@@ -65,17 +65,16 @@ export class UserDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.user){
-      this.form.setValue(this.user);
-    } 
-    else{
-      this.user = new User();
-      this.user.profile = new UserProfile();
-      this.user.work = new UserWork();
-      this.user.contacts = new UserContacts();
-      this.user.social = new UserSocial();
-      this.user.settings = new UserSettings();
-    } 
+    if (this.estudiante){
+      this.form.setValue(this.estudiante);
+    } else {
+      this.estudiante = new Estudiante();
+      this.estudiante.profile = new PerfilEstidante();
+      this.estudiante.work = new UserWork();
+      this.estudiante.contacts = new UserContacts();
+      this.estudiante.social = new UserSocial();
+      this.estudiante.settings = new UserSettings();
+    }
   }
 
   close(): void {
